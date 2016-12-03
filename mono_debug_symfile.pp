@@ -140,16 +140,16 @@ const
 
 
 var
-  mono_debug_open_mono_symbols : function(handle:PMonoDebugHandle; raw_contents:Puint8_t; size:longint; in_the_debugger:mono_bool):PMonoSymbolFile;
-  mono_debug_close_mono_symbol_file : procedure(symfile:PMonoSymbolFile);
-  mono_debug_symfile_is_loaded : function(symfile:PMonoSymbolFile):mono_bool;
-  mono_debug_symfile_lookup_location : function(minfo:PMonoDebugMethodInfo; offset:uint32_t):PMonoDebugSourceLocation;
-  mono_debug_symfile_free_location : procedure(location:PMonoDebugSourceLocation);
-  mono_debug_symfile_lookup_method : function(handle:PMonoDebugHandle; method:PMonoMethod):PMonoDebugMethodInfo;
-  mono_debug_symfile_lookup_locals : function(minfo:PMonoDebugMethodInfo):PMonoDebugLocalsInfo;
+  mono_debug_open_mono_symbols : function(handle:PMonoDebugHandle; raw_contents:Puint8_t; size:longint; in_the_debugger:mono_bool):PMonoSymbolFile;cdecl;
+  mono_debug_close_mono_symbol_file : procedure(symfile:PMonoSymbolFile);cdecl;
+  mono_debug_symfile_is_loaded : function(symfile:PMonoSymbolFile):mono_bool;cdecl;
+  mono_debug_symfile_lookup_location : function(minfo:PMonoDebugMethodInfo; offset:uint32_t):PMonoDebugSourceLocation;cdecl;
+  mono_debug_symfile_free_location : procedure(location:PMonoDebugSourceLocation);cdecl;
+  mono_debug_symfile_lookup_method : function(handle:PMonoDebugHandle; method:PMonoMethod):PMonoDebugMethodInfo;cdecl;
+  mono_debug_symfile_lookup_locals : function(minfo:PMonoDebugMethodInfo):PMonoDebugLocalsInfo;cdecl;
   mono_debug_symfile_get_seq_points : procedure(minfo:PMonoDebugMethodInfo; source_file:PPchar; source_file_list:PPGPtrArray; source_files:PPlongint; seq_points:PPMonoSymSeqPoint;
-    n_seq_points:Plongint);
-  mono_debug_image_has_debug_info : function(image:PMonoImage):mono_bool;
+    n_seq_points:Plongint);cdecl;
+  mono_debug_image_has_debug_info : function(image:PMonoImage):mono_bool;cdecl;
 
   procedure bind_procs(hLib : TLibHandle);
   procedure free_procs;   

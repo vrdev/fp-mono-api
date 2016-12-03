@@ -58,48 +58,48 @@ const
   MONO_RESOURCE_COUNT = 3;
 
 var
-  mono_counters_enable : procedure(section_mask:longint);
-  mono_counters_init : procedure;
+  mono_counters_enable : procedure(section_mask:longint);cdecl;
+  mono_counters_init : procedure;cdecl;
   {
   * register addr as the address of a counter of type type.
   * It may be a function pointer if MONO_COUNTER_CALLBACK is specified:
   * the function should return the value and take no arguments.
   }
-  mono_counters_register : procedure(descr:Pchar; _type:longint; addr:pointer);
-  mono_counters_register_with_size : procedure(name:Pchar; _type:longint; addr:pointer; size:longint);
+  mono_counters_register : procedure(descr:Pchar; _type:longint; addr:pointer);cdecl;
+  mono_counters_register_with_size : procedure(name:Pchar; _type:longint; addr:pointer; size:longint);cdecl;
 
 type
   MonoCounterRegisterCallback = procedure (_para1:PMonoCounter);cdecl;
 
 var
-  mono_counters_on_register : procedure(callback:MonoCounterRegisterCallback);
+  mono_counters_on_register : procedure(callback:MonoCounterRegisterCallback);cdecl;
   {
   * Create a readable dump of the counters for section_mask sections (ORed section values)
   }
-  mono_counters_dump : procedure(section_mask:longint; outfile:PFILE);
-  mono_counters_cleanup : procedure;
+  mono_counters_dump : procedure(section_mask:longint; outfile:PFILE);cdecl;
+  mono_counters_cleanup : procedure;cdecl;
 
 type
   CountersEnumCallback = function (counter:PMonoCounter; user_data:pointer):mono_bool;cdecl;
 
 var
-  mono_counters_foreach : procedure(cb:CountersEnumCallback; user_data:pointer);
-  mono_counters_sample : function(counter:PMonoCounter; buffer:pointer; buffer_size:longint):longint;
-  mono_counter_get_name : function(name:PMonoCounter):Pchar;
-  mono_counter_get_type : function(counter:PMonoCounter):longint;
-  mono_counter_get_section : function(counter:PMonoCounter):longint;
-  mono_counter_get_unit : function(counter:PMonoCounter):longint;
-  mono_counter_get_variance : function(counter:PMonoCounter):longint;
-  mono_counter_get_size : function(counter:PMonoCounter):size_t;
+  mono_counters_foreach : procedure(cb:CountersEnumCallback; user_data:pointer);cdecl;
+  mono_counters_sample : function(counter:PMonoCounter; buffer:pointer; buffer_size:longint):longint;cdecl;
+  mono_counter_get_name : function(name:PMonoCounter):Pchar;cdecl;
+  mono_counter_get_type : function(counter:PMonoCounter):longint;cdecl;
+  mono_counter_get_section : function(counter:PMonoCounter):longint;cdecl;
+  mono_counter_get_unit : function(counter:PMonoCounter):longint;cdecl;
+  mono_counter_get_variance : function(counter:PMonoCounter):longint;cdecl;
+  mono_counter_get_size : function(counter:PMonoCounter):size_t;cdecl;
 
 
 type
   MonoResourceCallback = procedure (resource_type:longint; value:uintptr_t; is_soft:longint);cdecl;
 
 var
-  mono_runtime_resource_limit : function(resource_type:longint; soft_limit:uintptr_t; hard_limit:uintptr_t):longint;
-  mono_runtime_resource_set_callback : procedure(callback:MonoResourceCallback);
-  mono_runtime_resource_check_limit : procedure(resource_type:longint; value:uintptr_t);
+  mono_runtime_resource_limit : function(resource_type:longint; soft_limit:uintptr_t; hard_limit:uintptr_t):longint;cdecl;
+  mono_runtime_resource_set_callback : procedure(callback:MonoResourceCallback);cdecl;
+  mono_runtime_resource_check_limit : procedure(resource_type:longint; value:uintptr_t);cdecl;
 
   procedure bind_procs(hLib : TLibHandle);
   procedure free_procs;

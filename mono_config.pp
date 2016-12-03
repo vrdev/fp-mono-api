@@ -14,18 +14,18 @@ uses
   mono_publib, mono_image;
 
 var
-  mono_config_get_os : function:Pchar;
-  mono_config_get_cpu : function:Pchar;
-  mono_config_get_wordsize : function:Pchar;
-  mono_get_config_dir : function:Pchar;
-  mono_set_config_dir : procedure(dir:Pchar);
-  mono_get_machine_config : function:Pchar;
-  mono_config_cleanup : procedure;
-  mono_config_parse : procedure(filename:Pchar);
-  mono_config_for_assembly : procedure(assembly:PMonoImage);
-  mono_config_parse_memory : procedure(buffer:Pchar);
-  mono_config_string_for_assembly_file : function(filename:Pchar):Pchar;
-  mono_config_set_server_mode : procedure(server_mode:mono_bool);
+  mono_config_get_os : function:Pchar;cdecl;
+  mono_config_get_cpu : function:Pchar;cdecl;
+  mono_config_get_wordsize : function:Pchar;cdecl;
+  mono_get_config_dir : function:Pchar;cdecl;
+  mono_set_config_dir : procedure(dir:Pchar);cdecl;
+  mono_get_machine_config : function:Pchar;cdecl;
+  mono_config_cleanup : procedure;cdecl;
+  mono_config_parse : procedure(filename:Pchar);cdecl;
+  mono_config_for_assembly : procedure(assembly:PMonoImage);cdecl;
+  mono_config_parse_memory : procedure(buffer:Pchar);cdecl;
+  mono_config_string_for_assembly_file : function(filename:Pchar):Pchar;cdecl;
+  mono_config_set_server_mode : procedure(server_mode:mono_bool);cdecl;
   mono_config_is_server_mode : function:mono_bool;
 
   procedure bind_procs(hLib : TLibHandle);

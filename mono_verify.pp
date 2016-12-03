@@ -53,9 +53,9 @@ type
   end;
 
 var
-  mono_method_verify : function(method:PMonoMethod; level:longint):PGSList;
-  mono_free_verify_list : procedure(list:PGSList);
-  mono_verify_corlib : function:Pchar;
+  mono_method_verify : function(method:PMonoMethod; level:longint):PGSList;cdecl;
+  mono_free_verify_list : procedure(list:PGSList);cdecl;
+  mono_verify_corlib : function:Pchar;cdecl;
 
   
   procedure bind_procs(hLib : TLibHandle);

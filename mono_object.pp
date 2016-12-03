@@ -100,86 +100,86 @@ type
   MonoMainThreadFunc = procedure (user_data:pointer);cdecl;
 
 var
-  mono_string_chars : function(s:PMonoString):Pmono_unichar2;
-  mono_string_length : function(s:PMonoString):longint;
-  mono_object_new : function(domain:PMonoDomain; klass:PMonoClass):PMonoObject;
-  mono_object_new_specific : function(vtable:PMonoVTable):PMonoObject;
+  mono_string_chars : function(s:PMonoString):Pmono_unichar2;cdecl;
+  mono_string_length : function(s:PMonoString):longint;cdecl;
+  mono_object_new : function(domain:PMonoDomain; klass:PMonoClass):PMonoObject;cdecl;
+  mono_object_new_specific : function(vtable:PMonoVTable):PMonoObject;cdecl;
   { can be used for classes without finalizer in non-profiling mode  }
-  mono_object_new_fast : function(vtable:PMonoVTable):PMonoObject;
-  mono_object_new_alloc_specific : function(vtable:PMonoVTable):PMonoObject;
-  mono_object_new_from_token : function(domain:PMonoDomain; image:PMonoImage; token:uint32_t):PMonoObject;
-  mono_array_new : function(domain:PMonoDomain; eclass:PMonoClass; n:uintptr_t):PMonoArray;
-  mono_array_new_full : function(domain:PMonoDomain; array_class:PMonoClass; lengths:Puintptr_t; lower_bounds:Pintptr_t):PMonoArray;
-  mono_array_new_specific : function(vtable:PMonoVTable; n:uintptr_t):PMonoArray;
-  mono_array_clone : function(parray:PMonoArray):PMonoArray;
-  mono_array_addr_with_size : function(parray:PMonoArray; size:longint; idx:uintptr_t):Pchar;
-  mono_array_length : function(parray:PMonoArray):uintptr_t;
-  mono_string_new_utf16 : function(domain:PMonoDomain; text:Pmono_unichar2; len:int32_t):PMonoString;
-  mono_string_new_size : function(domain:PMonoDomain; len:int32_t):PMonoString;
-  mono_ldstr : function(domain:PMonoDomain; image:PMonoImage; str_index:uint32_t):PMonoString;
-  mono_string_is_interned : function(str:PMonoString):PMonoString;
-  mono_string_intern : function(str:PMonoString):PMonoString;
-  mono_string_new : function(domain:PMonoDomain; text:Pchar):PMonoString;
-  mono_string_new_wrapper : function(text:Pchar):PMonoString;
-  mono_string_new_len : function(domain:PMonoDomain; text:Pchar; length:dword):PMonoString;
-  mono_string_new_utf32 : function(domain:PMonoDomain; text:Pmono_unichar4; len:int32_t):PMonoString;
-  mono_string_to_utf8 : function(string_obj:PMonoString):Pchar;
-  mono_string_to_utf8_checked : function(string_obj:PMonoString; error:PMonoError):Pchar;
-  mono_string_to_utf16 : function(string_obj:PMonoString):Pmono_unichar2;
-  mono_string_to_utf32 : function(string_obj:PMonoString):Pmono_unichar4;
-  mono_string_from_utf16 : function(data:Pmono_unichar2):PMonoString;
-  mono_string_from_utf32 : function(data:Pmono_unichar4):PMonoString;
-  mono_string_equal : function(s1:PMonoString; s2:PMonoString):mono_bool;
-  mono_string_hash : function(s:PMonoString):dword;
-  mono_object_hash : function(obj:PMonoObject):longint;
-  mono_object_to_string : function(obj:PMonoObject; exc:PPMonoObject):PMonoString;
-  mono_value_box : function(domain:PMonoDomain; klass:PMonoClass; val:pointer):PMonoObject;
-  mono_value_copy : procedure(dest:pointer; src:pointer; klass:PMonoClass);
-  mono_value_copy_array : procedure(dest:PMonoArray; dest_idx:longint; src:pointer; count:longint);
-  mono_object_get_domain : function(obj:PMonoObject):PMonoDomain;
-  mono_object_get_class : function(obj:PMonoObject):PMonoClass;
-  mono_object_unbox : function(obj:PMonoObject):pointer;
-  mono_object_clone : function(obj:PMonoObject):PMonoObject;
-  mono_object_isinst : function(obj:PMonoObject; klass:PMonoClass):PMonoObject;
-  mono_object_isinst_mbyref : function(obj:PMonoObject; klass:PMonoClass):PMonoObject;
-  mono_object_castclass_mbyref : function(obj:PMonoObject; klass:PMonoClass):PMonoObject;
-  mono_monitor_try_enter : function(obj:PMonoObject; ms:uint32_t):mono_bool;
-  mono_monitor_enter : function(obj:PMonoObject):mono_bool;
-  mono_monitor_enter_v4 : procedure(obj:PMonoObject; lock_taken:Pchar);
-  mono_object_get_size : function(o:PMonoObject):dword;
-  mono_monitor_exit : procedure(obj:PMonoObject);
-  mono_raise_exception : procedure(ex:PMonoException);
-  mono_runtime_object_init : procedure(this_obj:PMonoObject);
-  mono_runtime_class_init : procedure(vtable:PMonoVTable);
-  mono_object_get_virtual_method : function(obj:PMonoObject; method:PMonoMethod):PMonoMethod;
-  mono_runtime_invoke : function(method:PMonoMethod; obj:pointer; params:Ppointer; exc:PPMonoObject):PMonoObject;
-  mono_get_delegate_invoke : function(klass:PMonoClass):PMonoMethod;
-  mono_get_delegate_begin_invoke : function(klass:PMonoClass):PMonoMethod;
-  mono_get_delegate_end_invoke : function(klass:PMonoClass):PMonoMethod;
-  mono_runtime_delegate_invoke : function(delegate:PMonoObject; params:Ppointer; exc:PPMonoObject):PMonoObject;
-  mono_runtime_invoke_array : function(method:PMonoMethod; obj:pointer; params:PMonoArray; exc:PPMonoObject):PMonoObject;
-  mono_method_get_unmanaged_thunk : function(method:PMonoMethod):pointer;
-  mono_runtime_get_main_args : function:PMonoArray;
-  mono_runtime_exec_managed_code : procedure(domain:PMonoDomain; main_func:MonoMainThreadFunc; main_args:pointer);
-  mono_runtime_run_main : function(method:PMonoMethod; argc:longint; argv:PPchar; exc:PPMonoObject):longint;
-  mono_runtime_exec_main : function(method:PMonoMethod; args:PMonoArray; exc:PPMonoObject):longint;
-  mono_runtime_set_main_args : function(argc:longint; argv:PPchar):longint;
+  mono_object_new_fast : function(vtable:PMonoVTable):PMonoObject;cdecl;
+  mono_object_new_alloc_specific : function(vtable:PMonoVTable):PMonoObject;cdecl;
+  mono_object_new_from_token : function(domain:PMonoDomain; image:PMonoImage; token:uint32_t):PMonoObject;cdecl;
+  mono_array_new : function(domain:PMonoDomain; eclass:PMonoClass; n:uintptr_t):PMonoArray;cdecl;
+  mono_array_new_full : function(domain:PMonoDomain; array_class:PMonoClass; lengths:Puintptr_t; lower_bounds:Pintptr_t):PMonoArray;cdecl;
+  mono_array_new_specific : function(vtable:PMonoVTable; n:uintptr_t):PMonoArray;cdecl;
+  mono_array_clone : function(parray:PMonoArray):PMonoArray;cdecl;
+  mono_array_addr_with_size : function(parray:PMonoArray; size:longint; idx:uintptr_t):Pchar;cdecl;
+  mono_array_length : function(parray:PMonoArray):uintptr_t;cdecl;
+  mono_string_new_utf16 : function(domain:PMonoDomain; text:Pmono_unichar2; len:int32_t):PMonoString;cdecl;
+  mono_string_new_size : function(domain:PMonoDomain; len:int32_t):PMonoString;cdecl;
+  mono_ldstr : function(domain:PMonoDomain; image:PMonoImage; str_index:uint32_t):PMonoString;cdecl;
+  mono_string_is_interned : function(str:PMonoString):PMonoString;cdecl;
+  mono_string_intern : function(str:PMonoString):PMonoString;cdecl;
+  mono_string_new : function(domain:PMonoDomain; text:Pchar):PMonoString;cdecl;
+  mono_string_new_wrapper : function(text:Pchar):PMonoString;cdecl;
+  mono_string_new_len : function(domain:PMonoDomain; text:Pchar; length:dword):PMonoString;cdecl;
+  mono_string_new_utf32 : function(domain:PMonoDomain; text:Pmono_unichar4; len:int32_t):PMonoString;cdecl;
+  mono_string_to_utf8 : function(string_obj:PMonoString):Pchar;cdecl;
+  mono_string_to_utf8_checked : function(string_obj:PMonoString; error:PMonoError):Pchar;cdecl;
+  mono_string_to_utf16 : function(string_obj:PMonoString):Pmono_unichar2;cdecl;
+  mono_string_to_utf32 : function(string_obj:PMonoString):Pmono_unichar4;cdecl;
+  mono_string_from_utf16 : function(data:Pmono_unichar2):PMonoString;cdecl;
+  mono_string_from_utf32 : function(data:Pmono_unichar4):PMonoString;cdecl;
+  mono_string_equal : function(s1:PMonoString; s2:PMonoString):mono_bool;cdecl;
+  mono_string_hash : function(s:PMonoString):dword;cdecl;
+  mono_object_hash : function(obj:PMonoObject):longint;cdecl;
+  mono_object_to_string : function(obj:PMonoObject; exc:PPMonoObject):PMonoString;cdecl;
+  mono_value_box : function(domain:PMonoDomain; klass:PMonoClass; val:pointer):PMonoObject;cdecl;
+  mono_value_copy : procedure(dest:pointer; src:pointer; klass:PMonoClass);cdecl;
+  mono_value_copy_array : procedure(dest:PMonoArray; dest_idx:longint; src:pointer; count:longint);cdecl;
+  mono_object_get_domain : function(obj:PMonoObject):PMonoDomain;cdecl;
+  mono_object_get_class : function(obj:PMonoObject):PMonoClass;cdecl;
+  mono_object_unbox : function(obj:PMonoObject):pointer;cdecl;
+  mono_object_clone : function(obj:PMonoObject):PMonoObject;cdecl;
+  mono_object_isinst : function(obj:PMonoObject; klass:PMonoClass):PMonoObject;cdecl;
+  mono_object_isinst_mbyref : function(obj:PMonoObject; klass:PMonoClass):PMonoObject;cdecl;
+  mono_object_castclass_mbyref : function(obj:PMonoObject; klass:PMonoClass):PMonoObject;cdecl;
+  mono_monitor_try_enter : function(obj:PMonoObject; ms:uint32_t):mono_bool;cdecl;
+  mono_monitor_enter : function(obj:PMonoObject):mono_bool;cdecl;
+  mono_monitor_enter_v4 : procedure(obj:PMonoObject; lock_taken:Pchar);cdecl;
+  mono_object_get_size : function(o:PMonoObject):dword;cdecl;
+  mono_monitor_exit : procedure(obj:PMonoObject);cdecl;
+  mono_raise_exception : procedure(ex:PMonoException);cdecl;
+  mono_runtime_object_init : procedure(this_obj:PMonoObject);cdecl;
+  mono_runtime_class_init : procedure(vtable:PMonoVTable);cdecl;
+  mono_object_get_virtual_method : function(obj:PMonoObject; method:PMonoMethod):PMonoMethod;cdecl;
+  mono_runtime_invoke : function(method:PMonoMethod; obj:pointer; params:Ppointer; exc:PPMonoObject):PMonoObject;cdecl;
+  mono_get_delegate_invoke : function(klass:PMonoClass):PMonoMethod;cdecl;
+  mono_get_delegate_begin_invoke : function(klass:PMonoClass):PMonoMethod;cdecl;
+  mono_get_delegate_end_invoke : function(klass:PMonoClass):PMonoMethod;cdecl;
+  mono_runtime_delegate_invoke : function(delegate:PMonoObject; params:Ppointer; exc:PPMonoObject):PMonoObject;cdecl;
+  mono_runtime_invoke_array : function(method:PMonoMethod; obj:pointer; params:PMonoArray; exc:PPMonoObject):PMonoObject;cdecl;
+  mono_method_get_unmanaged_thunk : function(method:PMonoMethod):pointer;cdecl;
+  mono_runtime_get_main_args : function:PMonoArray;cdecl;
+  mono_runtime_exec_managed_code : procedure(domain:PMonoDomain; main_func:MonoMainThreadFunc; main_args:pointer);cdecl;
+  mono_runtime_run_main : function(method:PMonoMethod; argc:longint; argv:PPchar; exc:PPMonoObject):longint;cdecl;
+  mono_runtime_exec_main : function(method:PMonoMethod; args:PMonoArray; exc:PPMonoObject):longint;cdecl;
+  mono_runtime_set_main_args : function(argc:longint; argv:PPchar):longint;cdecl;
   { The following functions won't be available with mono was configured with remoting disabled.  }
-  mono_load_remote_field : function(this_obj:PMonoObject; klass:PMonoClass; field:PMonoClassField; res:Ppointer):pointer;
-  mono_load_remote_field_new : function(this_obj:PMonoObject; klass:PMonoClass; field:PMonoClassField):PMonoObject;
-  mono_store_remote_field : procedure(this_obj:PMonoObject; klass:PMonoClass; field:PMonoClassField; val:pointer);
-  mono_store_remote_field_new : procedure(this_obj:PMonoObject; klass:PMonoClass; field:PMonoClassField; arg:PMonoObject);
-  mono_unhandled_exception : procedure(exc:PMonoObject);
-  mono_print_unhandled_exception : procedure(exc:PMonoObject);
-  mono_compile_method : function(method:PMonoMethod):pointer;
+  mono_load_remote_field : function(this_obj:PMonoObject; klass:PMonoClass; field:PMonoClassField; res:Ppointer):pointer;cdecl;
+  mono_load_remote_field_new : function(this_obj:PMonoObject; klass:PMonoClass; field:PMonoClassField):PMonoObject;cdecl;
+  mono_store_remote_field : procedure(this_obj:PMonoObject; klass:PMonoClass; field:PMonoClassField; val:pointer);cdecl;
+  mono_store_remote_field_new : procedure(this_obj:PMonoObject; klass:PMonoClass; field:PMonoClassField; arg:PMonoObject);cdecl;
+  mono_unhandled_exception : procedure(exc:PMonoObject);cdecl;
+  mono_print_unhandled_exception : procedure(exc:PMonoObject);cdecl;
+  mono_compile_method : function(method:PMonoMethod):pointer;cdecl;
   { accessors for fields and properties  }
-  mono_field_set_value : procedure(obj:PMonoObject; field:PMonoClassField; value:pointer);
-  mono_field_static_set_value : procedure(vt:PMonoVTable; field:PMonoClassField; value:pointer);
-  mono_field_get_value : procedure(obj:PMonoObject; field:PMonoClassField; value:pointer);
-  mono_field_static_get_value : procedure(vt:PMonoVTable; field:PMonoClassField; value:pointer);
-  mono_field_get_value_object : function(domain:PMonoDomain; field:PMonoClassField; obj:PMonoObject):PMonoObject;
-  mono_property_set_value : procedure(prop:PMonoProperty; obj:pointer; params:Ppointer; exc:PPMonoObject);
-  mono_property_get_value : function(prop:PMonoProperty; obj:pointer; params:Ppointer; exc:PPMonoObject):PMonoObject;
+  mono_field_set_value : procedure(obj:PMonoObject; field:PMonoClassField; value:pointer);cdecl;
+  mono_field_static_set_value : procedure(vt:PMonoVTable; field:PMonoClassField; value:pointer);cdecl;
+  mono_field_get_value : procedure(obj:PMonoObject; field:PMonoClassField; value:pointer);cdecl;
+  mono_field_static_get_value : procedure(vt:PMonoVTable; field:PMonoClassField; value:pointer);cdecl;
+  mono_field_get_value_object : function(domain:PMonoDomain; field:PMonoClassField; obj:PMonoObject):PMonoObject;cdecl;
+  mono_property_set_value : procedure(prop:PMonoProperty; obj:pointer; params:Ppointer; exc:PPMonoObject);cdecl;
+  mono_property_get_value : function(prop:PMonoProperty; obj:pointer; params:Ppointer; exc:PPMonoObject):PMonoObject;cdecl;
   { GC handles support
   *
   * A handle can be created to refer to a managed object and either prevent it
@@ -194,10 +194,10 @@ var
   * mono_gchandle_get_target () can be used to get the object referenced by both kinds
   * of handle: for a weakref handle, if an object has been collected, it will return NULL.
   }
-  mono_gchandle_new : function(obj:PMonoObject; pinned:mono_bool):uint32_t;
-  mono_gchandle_new_weakref : function(obj:PMonoObject; track_resurrection:mono_bool):uint32_t;
-  mono_gchandle_get_target : function(gchandle:uint32_t):PMonoObject;
-  mono_gchandle_free : procedure(gchandle:uint32_t);
+  mono_gchandle_new : function(obj:PMonoObject; pinned:mono_bool):uint32_t;cdecl;
+  mono_gchandle_new_weakref : function(obj:PMonoObject; track_resurrection:mono_bool):uint32_t;cdecl;
+  mono_gchandle_get_target : function(gchandle:uint32_t):PMonoObject;cdecl;
+  mono_gchandle_free : procedure(gchandle:uint32_t);cdecl;
   { Reference queue support
   *
   * A reference queue is used to get notifications of when objects are collected.
@@ -212,18 +212,18 @@ type
   mono_reference_queue_callback = procedure (user_data:pointer);cdecl;
 
 var
-  mono_gc_reference_queue_new : function(callback:mono_reference_queue_callback):PMonoReferenceQueue;
-  mono_gc_reference_queue_free : procedure(queue:PMonoReferenceQueue);
-  mono_gc_reference_queue_add : function(queue:PMonoReferenceQueue; obj:PMonoObject; user_data:pointer):mono_bool;
+  mono_gc_reference_queue_new : function(callback:mono_reference_queue_callback):PMonoReferenceQueue;cdecl;
+  mono_gc_reference_queue_free : procedure(queue:PMonoReferenceQueue);cdecl;
+  mono_gc_reference_queue_add : function(queue:PMonoReferenceQueue; obj:PMonoObject; user_data:pointer):mono_bool;cdecl;
   { GC write barriers support  }
-  mono_gc_wbarrier_set_field : procedure(obj:PMonoObject; field_ptr:pointer; value:PMonoObject);
-  mono_gc_wbarrier_set_arrayref : procedure(arr:PMonoArray; slot_ptr:pointer; value:PMonoObject);
-  mono_gc_wbarrier_arrayref_copy : procedure(dest_ptr:pointer; src_ptr:pointer; count:longint);
-  mono_gc_wbarrier_generic_store : procedure(ptr:pointer; value:PMonoObject);
-  mono_gc_wbarrier_generic_store_atomic : procedure(ptr:pointer; value:PMonoObject);
-  mono_gc_wbarrier_generic_nostore : procedure(ptr:pointer);
-  mono_gc_wbarrier_value_copy : procedure(dest:pointer; src:pointer; count:longint; klass:PMonoClass);
-  mono_gc_wbarrier_object_copy : procedure(obj:PMonoObject; src:PMonoObject);
+  mono_gc_wbarrier_set_field : procedure(obj:PMonoObject; field_ptr:pointer; value:PMonoObject);cdecl;
+  mono_gc_wbarrier_set_arrayref : procedure(arr:PMonoArray; slot_ptr:pointer; value:PMonoObject);cdecl;
+  mono_gc_wbarrier_arrayref_copy : procedure(dest_ptr:pointer; src_ptr:pointer; count:longint);cdecl;
+  mono_gc_wbarrier_generic_store : procedure(ptr:pointer; value:PMonoObject);cdecl;
+  mono_gc_wbarrier_generic_store_atomic : procedure(ptr:pointer; value:PMonoObject);cdecl;
+  mono_gc_wbarrier_generic_nostore : procedure(ptr:pointer);cdecl;
+  mono_gc_wbarrier_value_copy : procedure(dest:pointer; src:pointer; count:longint; klass:PMonoClass);cdecl;
+  mono_gc_wbarrier_object_copy : procedure(obj:PMonoObject; src:PMonoObject);cdecl;
 
   
   procedure bind_procs(hLib : TLibHandle);

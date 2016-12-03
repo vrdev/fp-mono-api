@@ -105,8 +105,8 @@ type
 * responsible for enforcing this.
 }
 var
-  mono_gc_register_bridge_callbacks : procedure(callbacks:PMonoGCBridgeCallbacks);
-  mono_gc_wait_for_bridge_processing : procedure;
+  mono_gc_register_bridge_callbacks : procedure(callbacks:PMonoGCBridgeCallbacks);cdecl;
+  mono_gc_wait_for_bridge_processing : procedure;cdecl;
 
   
   procedure bind_procs(hLib : TLibHandle);

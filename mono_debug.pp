@@ -162,36 +162,36 @@ const
   MONO_DEBUGGER_MAGIC = $7aff65af4253d427;
 
 var
-  mono_debug_init : procedure(format:MonoDebugFormat);
-  mono_debug_open_image_from_memory : procedure(image:PMonoImage; raw_contents:Pmono_byte; size:longint);
-  mono_debug_cleanup : procedure;
-  mono_debug_close_image : procedure(image:PMonoImage);
-  mono_debug_domain_unload : procedure(domain:PMonoDomain);
-  mono_debug_domain_create : procedure(domain:PMonoDomain);
-  mono_debug_add_method : function(method:PMonoMethod; jit:PMonoDebugMethodJitInfo; domain:PMonoDomain):PMonoDebugMethodAddress;
-  mono_debug_remove_method : procedure(method:PMonoMethod; domain:PMonoDomain);
-  mono_debug_lookup_method : function(method:PMonoMethod):PMonoDebugMethodInfo;
-  mono_debug_lookup_method_addresses : function(method:PMonoMethod):PMonoDebugMethodAddressList;
-  mono_debug_find_method : function(method:PMonoMethod; domain:PMonoDomain):PMonoDebugMethodJitInfo;
-  mono_debug_free_method_jit_info : procedure(jit:PMonoDebugMethodJitInfo);
-  mono_debug_add_delegate_trampoline : procedure(code:pointer; size:longint);
-  mono_debug_lookup_locals : function(method:PMonoMethod):PMonoDebugLocalsInfo;
-  mono_debug_method_lookup_location : function(minfo:PMonoDebugMethodInfo; il_offset:longint):PMonoDebugSourceLocation;
+  mono_debug_init : procedure(format:MonoDebugFormat);cdecl;
+  mono_debug_open_image_from_memory : procedure(image:PMonoImage; raw_contents:Pmono_byte; size:longint);cdecl;
+  mono_debug_cleanup : procedure;cdecl;
+  mono_debug_close_image : procedure(image:PMonoImage);cdecl;
+  mono_debug_domain_unload : procedure(domain:PMonoDomain);cdecl;
+  mono_debug_domain_create : procedure(domain:PMonoDomain);cdecl;
+  mono_debug_add_method : function(method:PMonoMethod; jit:PMonoDebugMethodJitInfo; domain:PMonoDomain):PMonoDebugMethodAddress;cdecl;
+  mono_debug_remove_method : procedure(method:PMonoMethod; domain:PMonoDomain);cdecl;
+  mono_debug_lookup_method : function(method:PMonoMethod):PMonoDebugMethodInfo;cdecl;
+  mono_debug_lookup_method_addresses : function(method:PMonoMethod):PMonoDebugMethodAddressList;cdecl;
+  mono_debug_find_method : function(method:PMonoMethod; domain:PMonoDomain):PMonoDebugMethodJitInfo;cdecl;
+  mono_debug_free_method_jit_info : procedure(jit:PMonoDebugMethodJitInfo);cdecl;
+  mono_debug_add_delegate_trampoline : procedure(code:pointer; size:longint);cdecl;
+  mono_debug_lookup_locals : function(method:PMonoMethod):PMonoDebugLocalsInfo;cdecl;
+  mono_debug_method_lookup_location : function(minfo:PMonoDebugMethodInfo; il_offset:longint):PMonoDebugSourceLocation;cdecl;
   {
   * Line number support.
   }
-  mono_debug_lookup_source_location : function(method:PMonoMethod; address:uint32_t; domain:PMonoDomain):PMonoDebugSourceLocation;
-  mono_debug_il_offset_from_address : function(method:PMonoMethod; domain:PMonoDomain; native_offset:uint32_t):int32_t;
-  mono_debug_free_source_location : procedure(location:PMonoDebugSourceLocation);
-  mono_debug_print_stack_frame : function(method:PMonoMethod; native_offset:uint32_t; domain:PMonoDomain):Pchar;
+  mono_debug_lookup_source_location : function(method:PMonoMethod; address:uint32_t; domain:PMonoDomain):PMonoDebugSourceLocation;cdecl;
+  mono_debug_il_offset_from_address : function(method:PMonoMethod; domain:PMonoDomain; native_offset:uint32_t):int32_t;cdecl;
+  mono_debug_free_source_location : procedure(location:PMonoDebugSourceLocation);cdecl;
+  mono_debug_print_stack_frame : function(method:PMonoMethod; native_offset:uint32_t; domain:PMonoDomain):Pchar;cdecl;
   {
   * Mono Debugger support functions
   * These methods are used by the JIT while running inside the Mono Debugger.
   }
-  mono_debugger_method_has_breakpoint : function(method:PMonoMethod):longint;
-  mono_debugger_insert_breakpoint : function(method_name:Pchar; include_namespace:mono_bool):longint;
-  mono_set_is_debugger_attached : procedure(attached:mono_bool);
-  mono_is_debugger_attached : function:mono_bool;
+  mono_debugger_method_has_breakpoint : function(method:PMonoMethod):longint;cdecl;
+  mono_debugger_insert_breakpoint : function(method_name:Pchar; include_namespace:mono_bool):longint;cdecl;
+  mono_set_is_debugger_attached : procedure(attached:mono_bool);cdecl;
+  mono_is_debugger_attached : function:mono_bool;cdecl;
 
   procedure bind_procs(hLib : TLibHandle);
   procedure free_procs;   

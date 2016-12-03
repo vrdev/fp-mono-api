@@ -32,17 +32,17 @@ const
   MONO_ROOT_SOURCE_HANDLE = 14;
 
 var
-  mono_gc_collect : procedure(generation:longint);
-  mono_gc_max_generation : function:longint;
-  mono_gc_get_generation : function(pobject:PMonoObject):longint;
-  mono_gc_collection_count : function(generation:longint):longint;
-  mono_gc_get_used_size : function:int64_t;
-  mono_gc_get_heap_size : function:int64_t;
-  mono_gc_pending_finalizers : function:MonoBoolean;
-  mono_gc_finalize_notify : procedure;
-  mono_gc_invoke_finalizers : function:longint;
+  mono_gc_collect : procedure(generation:longint);cdecl;
+  mono_gc_max_generation : function:longint;cdecl;
+  mono_gc_get_generation : function(pobject:PMonoObject):longint;cdecl;
+  mono_gc_collection_count : function(generation:longint):longint;cdecl;
+  mono_gc_get_used_size : function:int64_t;cdecl;
+  mono_gc_get_heap_size : function:int64_t;cdecl;
+  mono_gc_pending_finalizers : function:MonoBoolean;cdecl;
+  mono_gc_finalize_notify : procedure;cdecl;
+  mono_gc_invoke_finalizers : function:longint;cdecl;
   { heap walking is only valid in the pre-stop-world event callback  }
-  mono_gc_walk_heap : function(flags:longint; callback:MonoGCReferences; data:pointer):longint;
+  mono_gc_walk_heap : function(flags:longint; callback:MonoGCReferences; data:pointer):longint;cdecl;
 
   
   procedure bind_procs(hLib : TLibHandle);

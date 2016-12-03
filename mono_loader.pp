@@ -10,40 +10,40 @@ type
   MonoStackWalk = function (method:PMonoMethod; native_offset:int32_t; il_offset:int32_t; managed:mono_bool; data:pointer):mono_bool;cdecl;
 
 var
-  mono_get_method : function(image:PMonoImage; token:uint32_t; klass:PMonoClass):PMonoMethod;
-  mono_get_method_full : function(image:PMonoImage; token:uint32_t; klass:PMonoClass; context:PMonoGenericContext):PMonoMethod;
-  mono_get_method_constrained : function(image:PMonoImage; token:uint32_t; constrained_class:PMonoClass; context:PMonoGenericContext; cil_method:PPMonoMethod):PMonoMethod;
-  mono_free_method : procedure(method:PMonoMethod);
-  mono_method_get_signature_full : function(method:PMonoMethod; image:PMonoImage; token:uint32_t; context:PMonoGenericContext):PMonoMethodSignature;
-  mono_method_get_signature : function(method:PMonoMethod; image:PMonoImage; token:uint32_t):PMonoMethodSignature;
-  mono_method_signature : function(method:PMonoMethod):PMonoMethodSignature;
-  mono_method_get_header : function(method:PMonoMethod):PMonoMethodHeader;
-  mono_method_get_name : function(method:PMonoMethod):Pchar;
-  mono_method_get_class : function(method:PMonoMethod):PMonoClass;
-  mono_method_get_token : function(method:PMonoMethod):uint32_t;
-  mono_method_get_flags : function(method:PMonoMethod; iflags:Puint32_t):uint32_t;
-  mono_method_get_index : function(method:PMonoMethod):uint32_t;
-  mono_load_image : function(fname:Pchar; status:PMonoImageOpenStatus):PMonoImage;
-  mono_add_internal_call : procedure(name:Pchar; method:pointer);
-  mono_lookup_internal_call : function(method:PMonoMethod):pointer;
-  mono_lookup_icall_symbol : function(m:PMonoMethod):Pchar;
-  mono_dllmap_insert : procedure(assembly:PMonoImage; dll:Pchar; func:Pchar; tdll:Pchar; tfunc:Pchar);
-  mono_lookup_pinvoke_call : function(method:PMonoMethod; exc_class:PPchar; exc_arg:PPchar):pointer;
-  mono_method_get_param_names : procedure(method:PMonoMethod; names:PPchar);
-  mono_method_get_param_token : function(method:PMonoMethod; idx:longint):uint32_t;
-  mono_method_get_marshal_info : procedure(method:PMonoMethod; mspecs:PPMonoMarshalSpec);
-  mono_method_has_marshal_info : function(method:PMonoMethod):mono_bool;
-  mono_method_get_last_managed : function:PMonoMethod;
-  mono_stack_walk : procedure(func:MonoStackWalk; user_data:pointer);
+  mono_get_method : function(image:PMonoImage; token:uint32_t; klass:PMonoClass):PMonoMethod;cdecl;
+  mono_get_method_full : function(image:PMonoImage; token:uint32_t; klass:PMonoClass; context:PMonoGenericContext):PMonoMethod;cdecl;
+  mono_get_method_constrained : function(image:PMonoImage; token:uint32_t; constrained_class:PMonoClass; context:PMonoGenericContext; cil_method:PPMonoMethod):PMonoMethod;cdecl;
+  mono_free_method : procedure(method:PMonoMethod);cdecl;
+  mono_method_get_signature_full : function(method:PMonoMethod; image:PMonoImage; token:uint32_t; context:PMonoGenericContext):PMonoMethodSignature;cdecl;
+  mono_method_get_signature : function(method:PMonoMethod; image:PMonoImage; token:uint32_t):PMonoMethodSignature;cdecl;
+  mono_method_signature : function(method:PMonoMethod):PMonoMethodSignature;cdecl;
+  mono_method_get_header : function(method:PMonoMethod):PMonoMethodHeader;cdecl;
+  mono_method_get_name : function(method:PMonoMethod):Pchar;cdecl;
+  mono_method_get_class : function(method:PMonoMethod):PMonoClass;cdecl;
+  mono_method_get_token : function(method:PMonoMethod):uint32_t;cdecl;
+  mono_method_get_flags : function(method:PMonoMethod; iflags:Puint32_t):uint32_t;cdecl;
+  mono_method_get_index : function(method:PMonoMethod):uint32_t;cdecl;
+  mono_load_image : function(fname:Pchar; status:PMonoImageOpenStatus):PMonoImage;cdecl;
+  mono_add_internal_call : procedure(name:Pchar; method:pointer);cdecl;
+  mono_lookup_internal_call : function(method:PMonoMethod):pointer;cdecl;
+  mono_lookup_icall_symbol : function(m:PMonoMethod):Pchar;cdecl;
+  mono_dllmap_insert : procedure(assembly:PMonoImage; dll:Pchar; func:Pchar; tdll:Pchar; tfunc:Pchar);cdecl;
+  mono_lookup_pinvoke_call : function(method:PMonoMethod; exc_class:PPchar; exc_arg:PPchar):pointer;cdecl;
+  mono_method_get_param_names : procedure(method:PMonoMethod; names:PPchar);cdecl;
+  mono_method_get_param_token : function(method:PMonoMethod; idx:longint):uint32_t;cdecl;
+  mono_method_get_marshal_info : procedure(method:PMonoMethod; mspecs:PPMonoMarshalSpec);cdecl;
+  mono_method_has_marshal_info : function(method:PMonoMethod):mono_bool;cdecl;
+  mono_method_get_last_managed : function:PMonoMethod;cdecl;
+  mono_stack_walk : procedure(func:MonoStackWalk; user_data:pointer);cdecl;
   { Use this if the IL offset is not needed: it's faster  }
-  mono_stack_walk_no_il : procedure(func:MonoStackWalk; user_data:pointer);
+  mono_stack_walk_no_il : procedure(func:MonoStackWalk; user_data:pointer); cdecl;
 
 type
   MonoStackWalkAsyncSafe = function (method:PMonoMethod; domain:PMonoDomain; base_address:pointer; offset:longint; data:pointer):mono_bool;cdecl;
 
 var
-  mono_stack_walk_async_safe : procedure(func:MonoStackWalkAsyncSafe; initial_sig_context:pointer; user_data:pointer);
-  mono_method_get_header_checked : function(method:PMonoMethod; error:PMonoError):PMonoMethodHeader;
+  mono_stack_walk_async_safe : procedure(func:MonoStackWalkAsyncSafe; initial_sig_context:pointer; user_data:pointer);cdecl;
+  mono_method_get_header_checked : function(method:PMonoMethod; error:PMonoError):PMonoMethodHeader;cdecl;
 
   
   procedure bind_procs(hLib : TLibHandle);

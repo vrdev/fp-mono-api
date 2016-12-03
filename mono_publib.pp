@@ -61,7 +61,7 @@ type
   end;
 
 var
-  mono_free : procedure(_para1:pointer);
+  mono_free : procedure(_para1:pointer);cdecl;
 
 const
   MONO_ZERO_LEN_ARRAY = 1;

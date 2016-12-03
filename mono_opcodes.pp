@@ -68,8 +68,8 @@ type
   end;
 
 var
-  mono_opcode_name : function(opcode:longint):Pchar;
-  mono_opcode_value : function(ip:PPmono_byte; pend:Pmono_byte):MonoOpcodeEnum;
+  mono_opcode_name : function(opcode:longint):Pchar;cdecl;
+  mono_opcode_value : function(ip:PPmono_byte; pend:Pmono_byte):MonoOpcodeEnum;cdecl;
 
   procedure bind_procs(hLib : TLibHandle);
   procedure free_procs;   

@@ -38,8 +38,8 @@ var
   mono_thread_set_manage_callback : procedure(thread:PMonoThread; func:MonoThreadManageCallback);
   mono_threads_set_default_stacksize : procedure(stacksize:uint32_t);cdecl;
   mono_threads_get_default_stacksize : function:uint32_t;cdecl;
-  mono_threads_request_thread_dump : procedure;
-  mono_thread_is_foreign : function(thread:PMonoThread):mono_bool;
+  mono_threads_request_thread_dump : procedure;cdecl;
+  mono_thread_is_foreign : function(thread:PMonoThread):mono_bool;cdecl;
   mono_thread_detach_if_exiting : function:mono_bool;cdecl;
 
   procedure bind_procs(hLib : TLibHandle);

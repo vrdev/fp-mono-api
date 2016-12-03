@@ -27,20 +27,20 @@ type
   end;
 
 var
-  mono_disasm_code_one : function(dh:PMonoDisHelper; method:PMonoMethod; ip:Pmono_byte; endp:PPmono_byte):Pchar;
-  mono_disasm_code : function(dh:PMonoDisHelper; method:PMonoMethod; ip:Pmono_byte; pend:Pmono_byte):Pchar;
-  mono_type_full_name : function(_type:PMonoType):Pchar;
-  mono_signature_get_desc : function(sig:PMonoMethodSignature; include_namespace:mono_bool):Pchar;
-  mono_context_get_desc : function(context:PMonoGenericContext):Pchar;
-  mono_method_desc_new : function(name:Pchar; include_namespace:mono_bool):PMonoMethodDesc;
-  mono_method_desc_from_method : function(method:PMonoMethod):PMonoMethodDesc;
-  mono_method_desc_free : procedure(desc:PMonoMethodDesc);
-  mono_method_desc_match : function(desc:PMonoMethodDesc; method:PMonoMethod):mono_bool;
-  mono_method_desc_full_match : function(desc:PMonoMethodDesc; method:PMonoMethod):mono_bool;
-  mono_method_desc_search_in_class : function(desc:PMonoMethodDesc; klass:PMonoClass):PMonoMethod;
-  mono_method_desc_search_in_image : function(desc:PMonoMethodDesc; image:PMonoImage):PMonoMethod;
-  mono_method_full_name : function(method:PMonoMethod; signature:mono_bool):Pchar;
-  mono_field_full_name : function(field:PMonoClassField):Pchar;
+  mono_disasm_code_one : function(dh:PMonoDisHelper; method:PMonoMethod; ip:Pmono_byte; endp:PPmono_byte):Pchar;cdecl;
+  mono_disasm_code : function(dh:PMonoDisHelper; method:PMonoMethod; ip:Pmono_byte; pend:Pmono_byte):Pchar;cdecl;
+  mono_type_full_name : function(_type:PMonoType):Pchar;cdecl;
+  mono_signature_get_desc : function(sig:PMonoMethodSignature; include_namespace:mono_bool):Pchar;cdecl;
+  mono_context_get_desc : function(context:PMonoGenericContext):Pchar;cdecl;
+  mono_method_desc_new : function(name:Pchar; include_namespace:mono_bool):PMonoMethodDesc;cdecl;
+  mono_method_desc_from_method : function(method:PMonoMethod):PMonoMethodDesc;cdecl;
+  mono_method_desc_free : procedure(desc:PMonoMethodDesc);cdecl;
+  mono_method_desc_match : function(desc:PMonoMethodDesc; method:PMonoMethod):mono_bool;cdecl;
+  mono_method_desc_full_match : function(desc:PMonoMethodDesc; method:PMonoMethod):mono_bool;cdecl;
+  mono_method_desc_search_in_class : function(desc:PMonoMethodDesc; klass:PMonoClass):PMonoMethod;cdecl;
+  mono_method_desc_search_in_image : function(desc:PMonoMethodDesc; image:PMonoImage):PMonoMethod;cdecl;
+  mono_method_full_name : function(method:PMonoMethod; signature:mono_bool):Pchar;cdecl;
+  mono_field_full_name : function(field:PMonoClassField):Pchar;cdecl;
 
   
   procedure bind_procs(hLib : TLibHandle);

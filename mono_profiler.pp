@@ -199,40 +199,40 @@ type
   * Function the profiler may call.
   }
 var
-  mono_profiler_install : procedure(prof:PMonoProfiler; shutdown_callback:MonoProfileFunc);
-  mono_profiler_set_events : procedure(events:MonoProfileFlags);
-  mono_profiler_get_events : function:MonoProfileFlags;
-  mono_profiler_install_appdomain : procedure(start_load:MonoProfileAppDomainFunc; end_load:MonoProfileAppDomainResult; start_unload:MonoProfileAppDomainFunc; end_unload:MonoProfileAppDomainFunc);
-  mono_profiler_install_appdomain_name : procedure(domain_name_cb:MonoProfileAppDomainFriendlyNameFunc);
-  mono_profiler_install_context : procedure(load:MonoProfileContextFunc; unload:MonoProfileContextFunc);
-  mono_profiler_install_assembly : procedure(start_load:MonoProfileAssemblyFunc; end_load:MonoProfileAssemblyResult; start_unload:MonoProfileAssemblyFunc; end_unload:MonoProfileAssemblyFunc);
-  mono_profiler_install_module : procedure(start_load:MonoProfileModuleFunc; end_load:MonoProfileModuleResult; start_unload:MonoProfileModuleFunc; end_unload:MonoProfileModuleFunc);
-  mono_profiler_install_class : procedure(start_load:MonoProfileClassFunc; end_load:MonoProfileClassResult; start_unload:MonoProfileClassFunc; end_unload:MonoProfileClassFunc);
-  mono_profiler_install_jit_compile : procedure(start:MonoProfileMethodFunc; pend:MonoProfileMethodResult);
-  mono_profiler_install_jit_end : procedure(pend:MonoProfileJitResult);
-  mono_profiler_install_method_free : procedure(callback:MonoProfileMethodFunc);
-  mono_profiler_install_method_invoke : procedure(start:MonoProfileMethodFunc; pend:MonoProfileMethodFunc);
-  mono_profiler_install_enter_leave : procedure(enter:MonoProfileMethodFunc; fleave:MonoProfileMethodFunc);
-  mono_profiler_install_thread : procedure(start:MonoProfileThreadFunc; pend:MonoProfileThreadFunc);
-  mono_profiler_install_thread_name : procedure(thread_name_cb:MonoProfileThreadNameFunc);
-  mono_profiler_install_transition : procedure(callback:MonoProfileMethodResult);
-  mono_profiler_install_allocation : procedure(callback:MonoProfileAllocFunc);
-  mono_profiler_install_monitor : procedure(callback:MonoProfileMonitorFunc);
-  mono_profiler_install_statistical : procedure(callback:MonoProfileStatFunc);
-  mono_profiler_install_statistical_call_chain : procedure(callback:MonoProfileStatCallChainFunc; call_chain_depth:longint; call_chain_strategy:MonoProfilerCallChainStrategy);
-  mono_profiler_install_exception : procedure(throw_callback:MonoProfileExceptionFunc; exc_method_leave:MonoProfileMethodFunc; clause_callback:MonoProfileExceptionClauseFunc);
-  mono_profiler_install_coverage_filter : procedure(callback:MonoProfileCoverageFilterFunc);
-  mono_profiler_coverage_get : procedure(prof:PMonoProfiler; method:PMonoMethod; func:MonoProfileCoverageFunc);
-  mono_profiler_install_gc : procedure(callback:MonoProfileGCFunc; heap_resize_callback:MonoProfileGCResizeFunc);
-  mono_profiler_install_gc_moves : procedure(callback:MonoProfileGCMoveFunc);
-  mono_profiler_install_gc_roots : procedure(handle_callback:MonoProfileGCHandleFunc; roots_callback:MonoProfileGCRootFunc);
-  mono_profiler_install_gc_finalize : procedure(pbegin:MonoProfileGCFinalizeFunc; begin_obj:MonoProfileGCFinalizeObjectFunc; end_obj:MonoProfileGCFinalizeObjectFunc; pend:MonoProfileGCFinalizeFunc);
-  mono_profiler_install_runtime_initialized : procedure(runtime_initialized_callback:MonoProfileFunc);
-  mono_profiler_install_code_chunk_new : procedure(callback:MonoProfilerCodeChunkNew);
-  mono_profiler_install_code_chunk_destroy : procedure(callback:MonoProfilerCodeChunkDestroy);
-  mono_profiler_install_code_buffer_new : procedure(callback:MonoProfilerCodeBufferNew);
-  mono_profiler_install_iomap : procedure(callback:MonoProfileIomapFunc);
-  mono_profiler_load : procedure(desc:Pchar);
+  mono_profiler_install : procedure(prof:PMonoProfiler; shutdown_callback:MonoProfileFunc);cdecl;
+  mono_profiler_set_events : procedure(events:MonoProfileFlags);cdecl;
+  mono_profiler_get_events : function:MonoProfileFlags;cdecl;
+  mono_profiler_install_appdomain : procedure(start_load:MonoProfileAppDomainFunc; end_load:MonoProfileAppDomainResult; start_unload:MonoProfileAppDomainFunc; end_unload:MonoProfileAppDomainFunc);cdecl;
+  mono_profiler_install_appdomain_name : procedure(domain_name_cb:MonoProfileAppDomainFriendlyNameFunc);cdecl;
+  mono_profiler_install_context : procedure(load:MonoProfileContextFunc; unload:MonoProfileContextFunc);cdecl;
+  mono_profiler_install_assembly : procedure(start_load:MonoProfileAssemblyFunc; end_load:MonoProfileAssemblyResult; start_unload:MonoProfileAssemblyFunc; end_unload:MonoProfileAssemblyFunc);cdecl;
+  mono_profiler_install_module : procedure(start_load:MonoProfileModuleFunc; end_load:MonoProfileModuleResult; start_unload:MonoProfileModuleFunc; end_unload:MonoProfileModuleFunc);cdecl;
+  mono_profiler_install_class : procedure(start_load:MonoProfileClassFunc; end_load:MonoProfileClassResult; start_unload:MonoProfileClassFunc; end_unload:MonoProfileClassFunc);cdecl;
+  mono_profiler_install_jit_compile : procedure(start:MonoProfileMethodFunc; pend:MonoProfileMethodResult);cdecl;
+  mono_profiler_install_jit_end : procedure(pend:MonoProfileJitResult);cdecl;
+  mono_profiler_install_method_free : procedure(callback:MonoProfileMethodFunc);cdecl;
+  mono_profiler_install_method_invoke : procedure(start:MonoProfileMethodFunc; pend:MonoProfileMethodFunc);cdecl;
+  mono_profiler_install_enter_leave : procedure(enter:MonoProfileMethodFunc; fleave:MonoProfileMethodFunc);cdecl;
+  mono_profiler_install_thread : procedure(start:MonoProfileThreadFunc; pend:MonoProfileThreadFunc);cdecl;
+  mono_profiler_install_thread_name : procedure(thread_name_cb:MonoProfileThreadNameFunc);cdecl;
+  mono_profiler_install_transition : procedure(callback:MonoProfileMethodResult);cdecl;
+  mono_profiler_install_allocation : procedure(callback:MonoProfileAllocFunc);cdecl;
+  mono_profiler_install_monitor : procedure(callback:MonoProfileMonitorFunc);cdecl;
+  mono_profiler_install_statistical : procedure(callback:MonoProfileStatFunc);cdecl;
+  mono_profiler_install_statistical_call_chain : procedure(callback:MonoProfileStatCallChainFunc; call_chain_depth:longint; call_chain_strategy:MonoProfilerCallChainStrategy);cdecl;
+  mono_profiler_install_exception : procedure(throw_callback:MonoProfileExceptionFunc; exc_method_leave:MonoProfileMethodFunc; clause_callback:MonoProfileExceptionClauseFunc);cdecl;
+  mono_profiler_install_coverage_filter : procedure(callback:MonoProfileCoverageFilterFunc);cdecl;
+  mono_profiler_coverage_get : procedure(prof:PMonoProfiler; method:PMonoMethod; func:MonoProfileCoverageFunc);cdecl;
+  mono_profiler_install_gc : procedure(callback:MonoProfileGCFunc; heap_resize_callback:MonoProfileGCResizeFunc);cdecl;
+  mono_profiler_install_gc_moves : procedure(callback:MonoProfileGCMoveFunc);cdecl;
+  mono_profiler_install_gc_roots : procedure(handle_callback:MonoProfileGCHandleFunc; roots_callback:MonoProfileGCRootFunc);cdecl;
+  mono_profiler_install_gc_finalize : procedure(pbegin:MonoProfileGCFinalizeFunc; begin_obj:MonoProfileGCFinalizeObjectFunc; end_obj:MonoProfileGCFinalizeObjectFunc; pend:MonoProfileGCFinalizeFunc);cdecl;
+  mono_profiler_install_runtime_initialized : procedure(runtime_initialized_callback:MonoProfileFunc);cdecl;
+  mono_profiler_install_code_chunk_new : procedure(callback:MonoProfilerCodeChunkNew);cdecl;
+  mono_profiler_install_code_chunk_destroy : procedure(callback:MonoProfilerCodeChunkDestroy);cdecl;
+  mono_profiler_install_code_buffer_new : procedure(callback:MonoProfilerCodeBufferNew);cdecl;
+  mono_profiler_install_iomap : procedure(callback:MonoProfileIomapFunc);cdecl;
+  mono_profiler_load : procedure(desc:Pchar);cdecl;
   { Elapsed time is tracked by user+kernel time of the process - this is the default }
   { Elapsed time is tracked by wallclock time  }
 
@@ -244,7 +244,7 @@ const
   MONO_PROFILER_STAT_MODE_REAL = 1;
 
 var
-  mono_profiler_set_statistical_mode : procedure(mode:MonoProfileSamplingMode; sampling_frequency_hz:int64_t);
+  mono_profiler_set_statistical_mode : procedure(mode:MonoProfileSamplingMode; sampling_frequency_hz:int64_t);cdecl;
 
   
   procedure bind_procs(hLib : TLibHandle);

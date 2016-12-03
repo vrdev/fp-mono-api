@@ -30,74 +30,74 @@ type
   MonoAssemblyPreLoadFunc = function (aname:PMonoAssemblyName; assemblies_path:PPchar; user_data:pointer):PMonoAssembly;cdecl;
 
 var
-  mono_assemblies_init : procedure;
-  mono_assemblies_cleanup : procedure;
-  mono_assembly_open : function(filename:Pchar; status:PMonoImageOpenStatus):PMonoAssembly;
-  mono_assembly_open_full : function(filename:Pchar; status:PMonoImageOpenStatus; refonly:mono_bool):PMonoAssembly;
-  mono_assembly_load : function(aname:PMonoAssemblyName; basedir:Pchar; status:PMonoImageOpenStatus):PMonoAssembly;
-  mono_assembly_load_full : function(aname:PMonoAssemblyName; basedir:Pchar; status:PMonoImageOpenStatus; refonly:mono_bool):PMonoAssembly;
-  mono_assembly_load_from : function(image:PMonoImage; fname:Pchar; status:PMonoImageOpenStatus):PMonoAssembly;
-  mono_assembly_load_from_full : function(image:PMonoImage; fname:Pchar; status:PMonoImageOpenStatus; refonly:mono_bool):PMonoAssembly;
-  mono_assembly_load_with_partial_name : function(name:Pchar; status:PMonoImageOpenStatus):PMonoAssembly;
-  mono_assembly_loaded : function(aname:PMonoAssemblyName):PMonoAssembly;
-  mono_assembly_loaded_full : function(aname:PMonoAssemblyName; refonly:mono_bool):PMonoAssembly;
-  mono_assembly_get_assemblyref : procedure(image:PMonoImage; index:longint; aname:PMonoAssemblyName);
-  mono_assembly_load_reference : procedure(image:PMonoImage; index:longint);
-  mono_assembly_load_references : procedure(image:PMonoImage; status:PMonoImageOpenStatus);
-  mono_assembly_load_module : function(assembly:PMonoAssembly; idx:uint32_t):PMonoImage;
-  mono_assembly_close : procedure(assembly:PMonoAssembly);
-  mono_assembly_setrootdir : procedure(root_dir:Pchar);
-  mono_assembly_getrootdir : function:Pchar;
-  mono_assembly_foreach : procedure(func:MonoFunc; user_data:pointer);
-  mono_assembly_set_main : procedure(assembly:PMonoAssembly);
-  mono_assembly_get_main : function:PMonoAssembly;
-  mono_assembly_get_image : function(assembly:PMonoAssembly):PMonoImage;
-  mono_assembly_get_name : function(assembly:PMonoAssembly):PMonoAssemblyName;
-  mono_assembly_fill_assembly_name : function(image:PMonoImage; aname:PMonoAssemblyName):mono_bool;
-  mono_assembly_names_equal : function(l:PMonoAssemblyName; r:PMonoAssemblyName):mono_bool;
-  mono_stringify_assembly_name : function(aname:PMonoAssemblyName):Pchar;
+  mono_assemblies_init : procedure;cdecl;
+  mono_assemblies_cleanup : procedure;cdecl;
+  mono_assembly_open : function(filename:Pchar; status:PMonoImageOpenStatus):PMonoAssembly;cdecl;
+  mono_assembly_open_full : function(filename:Pchar; status:PMonoImageOpenStatus; refonly:mono_bool):PMonoAssembly;cdecl;
+  mono_assembly_load : function(aname:PMonoAssemblyName; basedir:Pchar; status:PMonoImageOpenStatus):PMonoAssembly;cdecl;
+  mono_assembly_load_full : function(aname:PMonoAssemblyName; basedir:Pchar; status:PMonoImageOpenStatus; refonly:mono_bool):PMonoAssembly;cdecl;
+  mono_assembly_load_from : function(image:PMonoImage; fname:Pchar; status:PMonoImageOpenStatus):PMonoAssembly;cdecl;
+  mono_assembly_load_from_full : function(image:PMonoImage; fname:Pchar; status:PMonoImageOpenStatus; refonly:mono_bool):PMonoAssembly;cdecl;
+  mono_assembly_load_with_partial_name : function(name:Pchar; status:PMonoImageOpenStatus):PMonoAssembly;cdecl;
+  mono_assembly_loaded : function(aname:PMonoAssemblyName):PMonoAssembly;cdecl;
+  mono_assembly_loaded_full : function(aname:PMonoAssemblyName; refonly:mono_bool):PMonoAssembly;cdecl;
+  mono_assembly_get_assemblyref : procedure(image:PMonoImage; index:longint; aname:PMonoAssemblyName);cdecl;
+  mono_assembly_load_reference : procedure(image:PMonoImage; index:longint);cdecl;
+  mono_assembly_load_references : procedure(image:PMonoImage; status:PMonoImageOpenStatus);cdecl;
+  mono_assembly_load_module : function(assembly:PMonoAssembly; idx:uint32_t):PMonoImage;cdecl;
+  mono_assembly_close : procedure(assembly:PMonoAssembly);cdecl;
+  mono_assembly_setrootdir : procedure(root_dir:Pchar);cdecl;
+  mono_assembly_getrootdir : function:Pchar;cdecl;
+  mono_assembly_foreach : procedure(func:MonoFunc; user_data:pointer);cdecl;
+  mono_assembly_set_main : procedure(assembly:PMonoAssembly);cdecl;
+  mono_assembly_get_main : function:PMonoAssembly;cdecl;
+  mono_assembly_get_image : function(assembly:PMonoAssembly):PMonoImage;cdecl;
+  mono_assembly_get_name : function(assembly:PMonoAssembly):PMonoAssemblyName;cdecl;
+  mono_assembly_fill_assembly_name : function(image:PMonoImage; aname:PMonoAssemblyName):mono_bool;cdecl;
+  mono_assembly_names_equal : function(l:PMonoAssemblyName; r:PMonoAssemblyName):mono_bool;cdecl;
+  mono_stringify_assembly_name : function(aname:PMonoAssemblyName):Pchar;cdecl;
   { Installs a function which is called each time a new assembly is loaded.  }
 
 var
-  mono_install_assembly_load_hook : procedure(func:MonoAssemblyLoadFunc; user_data:pointer);
+  mono_install_assembly_load_hook : procedure(func:MonoAssemblyLoadFunc; user_data:pointer);cdecl;
   {
   * Installs a new function which is used to search the list of loaded
   * assemblies for a given assembly name.
   }
 
 var
-  mono_install_assembly_search_hook : procedure(func:MonoAssemblySearchFunc; user_data:pointer);
-  mono_install_assembly_refonly_search_hook : procedure(func:MonoAssemblySearchFunc; user_data:pointer);
-  mono_assembly_invoke_search_hook : function(aname:PMonoAssemblyName):PMonoAssembly;
+  mono_install_assembly_search_hook : procedure(func:MonoAssemblySearchFunc; user_data:pointer);cdecl;
+  mono_install_assembly_refonly_search_hook : procedure(func:MonoAssemblySearchFunc; user_data:pointer);cdecl;
+  mono_assembly_invoke_search_hook : function(aname:PMonoAssemblyName):PMonoAssembly;cdecl;
   {
   * Installs a new search function which is used as a last resort when loading
   * an assembly fails. This could invoke AssemblyResolve events.
   }
-  mono_install_assembly_postload_search_hook : procedure(func:MonoAssemblySearchFunc; user_data:pointer);
-  mono_install_assembly_postload_refonly_search_hook : procedure(func:MonoAssemblySearchFunc; user_data:pointer);
+  mono_install_assembly_postload_search_hook : procedure(func:MonoAssemblySearchFunc; user_data:pointer);cdecl;
+  mono_install_assembly_postload_refonly_search_hook : procedure(func:MonoAssemblySearchFunc; user_data:pointer);cdecl;
   { Installs a function which is called before a new assembly is loaded
   * The hook are invoked from last hooked to first. If any of them returns
   * a non-null value, that will be the value returned in mono_assembly_load  }
 
 var
-  mono_install_assembly_preload_hook : procedure(func:MonoAssemblyPreLoadFunc; user_data:pointer);
-  mono_install_assembly_refonly_preload_hook : procedure(func:MonoAssemblyPreLoadFunc; user_data:pointer);
-  mono_assembly_invoke_load_hook : procedure(ass:PMonoAssembly);
-  mono_assembly_name_new : function(name:Pchar):PMonoAssemblyName;
-  mono_assembly_name_get_name : function(aname:PMonoAssemblyName):Pchar;
-  mono_assembly_name_get_culture : function(aname:PMonoAssemblyName):Pchar;
-  mono_assembly_name_get_version : function(aname:PMonoAssemblyName; minor:Puint16_t; build:Puint16_t; revision:Puint16_t):uint16_t;
-  mono_assembly_name_get_pubkeytoken : function(aname:PMonoAssemblyName):Pmono_byte;
-  mono_assembly_name_free : procedure(aname:PMonoAssemblyName);
+  mono_install_assembly_preload_hook : procedure(func:MonoAssemblyPreLoadFunc; user_data:pointer);cdecl;
+  mono_install_assembly_refonly_preload_hook : procedure(func:MonoAssemblyPreLoadFunc; user_data:pointer);cdecl;
+  mono_assembly_invoke_load_hook : procedure(ass:PMonoAssembly);cdecl;
+  mono_assembly_name_new : function(name:Pchar):PMonoAssemblyName;cdecl;
+  mono_assembly_name_get_name : function(aname:PMonoAssemblyName):Pchar;cdecl;
+  mono_assembly_name_get_culture : function(aname:PMonoAssemblyName):Pchar;cdecl;
+  mono_assembly_name_get_version : function(aname:PMonoAssemblyName; minor:Puint16_t; build:Puint16_t; revision:Puint16_t):uint16_t;cdecl;
+  mono_assembly_name_get_pubkeytoken : function(aname:PMonoAssemblyName):Pmono_byte;cdecl;
+  mono_assembly_name_free : procedure(aname:PMonoAssemblyName);cdecl;
 
 var
-  mono_register_bundled_assemblies : procedure(assemblies:PPMonoBundledAssembly);
-  mono_register_config_for_assembly : procedure(assembly_name:Pchar; config_xml:Pchar);
-  mono_register_symfile_for_assembly : procedure(assembly_name:Pchar; raw_contents:Pmono_byte; size:longint);
-  mono_register_machine_config : procedure(config_xml:Pchar);
-  mono_set_rootdir : procedure;
-  mono_set_dirs : procedure(assembly_dir:Pchar; config_dir:Pchar);
-  mono_set_assemblies_path : procedure(path:Pchar);
+  mono_register_bundled_assemblies : procedure(assemblies:PPMonoBundledAssembly);cdecl;
+  mono_register_config_for_assembly : procedure(assembly_name:Pchar; config_xml:Pchar);cdecl;
+  mono_register_symfile_for_assembly : procedure(assembly_name:Pchar; raw_contents:Pmono_byte; size:longint);cdecl;
+  mono_register_machine_config : procedure(config_xml:Pchar);cdecl;
+  mono_set_rootdir : procedure;cdecl;
+  mono_set_dirs : procedure(assembly_dir:Pchar; config_dir:Pchar);cdecl;
+  mono_set_assemblies_path : procedure(path:Pchar);cdecl;
   
   procedure bind_procs(hLib : TLibHandle);
   procedure free_procs;   

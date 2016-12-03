@@ -27,17 +27,17 @@ type
   MonoBreakPolicyFunc = function (method:PMonoMethod):MonoBreakPolicy;cdecl;
 
 var
-  mono_jit_init : function(afile:Pchar):PMonoDomain;
-  mono_jit_init_version : function(root_domain_name:Pchar; runtime_version:Pchar):PMonoDomain;
-  mono_jit_exec : function(domain:PMonoDomain; assembly:PMonoAssembly; argc:longint; argv:PPchar):longint;
-  mono_jit_cleanup : procedure(domain:PMonoDomain);
-  mono_jit_set_trace_options : function(options:Pchar):mono_bool;
-  mono_set_signal_chaining : procedure(chain_signals:mono_bool);
-  mono_set_crash_chaining : procedure(chain_signals:mono_bool);
+  mono_jit_init : function(afile:Pchar):PMonoDomain;cdecl;
+  mono_jit_init_version : function(root_domain_name:Pchar; runtime_version:Pchar):PMonoDomain;cdecl;
+  mono_jit_exec : function(domain:PMonoDomain; assembly:PMonoAssembly; argc:longint; argv:PPchar):longint;cdecl;
+  mono_jit_cleanup : procedure(domain:PMonoDomain);cdecl;
+  mono_jit_set_trace_options : function(options:Pchar):mono_bool;cdecl;
+  mono_set_signal_chaining : procedure(chain_signals:mono_bool);cdecl;
+  mono_set_crash_chaining : procedure(chain_signals:mono_bool);cdecl;
   {*
   * This function is deprecated, use mono_jit_set_aot_mode instead.
   }
-  mono_jit_set_aot_only : procedure(aot_only:mono_bool);
+  mono_jit_set_aot_only : procedure(aot_only:mono_bool);cdecl;
   {*
   * Allows control over our AOT (Ahead-of-time) compilation mode.
   }
@@ -52,7 +52,7 @@ var
 
 
 var
-  mono_jit_set_aot_mode : procedure(mode:MonoAotMode);
+  mono_jit_set_aot_mode : procedure(mode:MonoAotMode);cdecl;
   { Allow embedders to decide wherther to actually obey breakpoint instructions
   * in specific methods (works for both break IL instructions and Debugger.Break ()
   * method calls).
@@ -67,12 +67,12 @@ var
 
 
 var
-  mono_set_break_policy : procedure(policy_callback:MonoBreakPolicyFunc);
-  mono_jit_parse_options : procedure(argc:longint; argv:PPchar);
-  mono_get_runtime_build_info : function:Pchar;
+  mono_set_break_policy : procedure(policy_callback:MonoBreakPolicyFunc);cdecl;
+  mono_jit_parse_options : procedure(argc:longint; argv:PPchar);cdecl;
+  mono_get_runtime_build_info : function:Pchar;cdecl;
   { The following APIs are not stable. Avoid if possible.  }
-  mono_get_jit_info_from_method : function(domain:PMonoDomain; method:PMonoMethod):PMonoJitInfo;
-  mono_aot_get_method : function(domain:PMonoDomain; method:PMonoMethod):pointer;
+  mono_get_jit_info_from_method : function(domain:PMonoDomain; method:PMonoMethod):PMonoJitInfo;cdecl;
+  mono_aot_get_method : function(domain:PMonoDomain; method:PMonoMethod):pointer;cdecl;
 
   procedure bind_procs(hLib : TLibHandle);
   procedure free_procs;   

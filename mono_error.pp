@@ -47,12 +47,12 @@ type
   end;
 
 var
-  mono_error_init : procedure(error:PMonoError);
-  mono_error_init_flags : procedure(error:PMonoError; flags:word);
-  mono_error_cleanup : procedure(error:PMonoError);
-  mono_error_ok : function(error:PMonoError):mono_bool;
-  mono_error_get_error_code : function(error:PMonoError):word;
-  mono_error_get_message : function(error:PMonoError):Pchar;
+  mono_error_init : procedure(error:PMonoError);cdecl;
+  mono_error_init_flags : procedure(error:PMonoError; flags:word);cdecl;
+  mono_error_cleanup : procedure(error:PMonoError);cdecl;
+  mono_error_ok : function(error:PMonoError):mono_bool;cdecl;
+  mono_error_get_error_code : function(error:PMonoError):word;cdecl;
+  mono_error_get_message : function(error:PMonoError):Pchar;cdecl;
 
   procedure bind_procs(hLib : TLibHandle);
   procedure free_procs;   

@@ -28,8 +28,8 @@ type
   MonoDlFallbackClose = function (handle:pointer; user_data:pointer):pointer;cdecl;
 
 var
-  mono_dl_fallback_register : function(load_func:MonoDlFallbackLoad; symbol_func:MonoDlFallbackSymbol; close_func:MonoDlFallbackClose; user_data:pointer):PMonoDlFallbackHandler;
-  mono_dl_fallback_unregister : procedure(handler:PMonoDlFallbackHandler);
+  mono_dl_fallback_register : function(load_func:MonoDlFallbackLoad; symbol_func:MonoDlFallbackSymbol; close_func:MonoDlFallbackClose; user_data:pointer):PMonoDlFallbackHandler;cdecl;
+  mono_dl_fallback_unregister : procedure(handler:PMonoDlFallbackHandler);cdecl;
 
   procedure bind_procs(hLib : TLibHandle);
   procedure free_procs;   

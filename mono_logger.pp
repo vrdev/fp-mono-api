@@ -7,8 +7,8 @@ uses
   mono_publib;
 
 var
-  mono_trace_set_level_string : procedure(value:Pchar);
-  mono_trace_set_mask_string : procedure(value:Pchar);
+  mono_trace_set_level_string : procedure(value:Pchar);cdecl;
+  mono_trace_set_mask_string : procedure(value:Pchar);cdecl;
 
 
 type
@@ -16,9 +16,9 @@ type
   MonoPrintCallback = procedure (_string:Pchar; is_stdout:mono_bool);cdecl;
 
 var
-  mono_trace_set_log_handler : procedure(callback:MonoLogCallback; user_data:pointer);
-  mono_trace_set_print_handler : procedure(callback:MonoPrintCallback);
-  mono_trace_set_printerr_handler : procedure(callback:MonoPrintCallback);
+  mono_trace_set_log_handler : procedure(callback:MonoLogCallback; user_data:pointer);cdecl;
+  mono_trace_set_print_handler : procedure(callback:MonoPrintCallback);cdecl;
+  mono_trace_set_printerr_handler : procedure(callback:MonoPrintCallback);cdecl;
 
   procedure bind_procs(hLib : TLibHandle);
   procedure free_procs;   
